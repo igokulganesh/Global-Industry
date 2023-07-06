@@ -1,0 +1,83 @@
+{% extends 'inventory/base.html' %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">Orders Details </h1>
+<p class="mb-4">View the order details  and status of delivery </p> 
+
+<a href="{% url 'inventory:order_all' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text">View All customer Orders</span>
+</a>
+
+<a href="{% url 'inventory:order_delivered' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text">Delivered Orders</span>
+</a>
+
+<a href="{% url 'inventory:order_not_delivered' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text">Not Delivered Orders</span>
+</a>
+
+<div class="card shadow mb-4"> 
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary"> Customer Orders Record </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th> ID </th>
+              <th> Customer </th>
+              <th> Date of Ordered </th>
+              <th> Total Amount </th>
+              <th> Delivered Status </th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+    		    <ul> 
+      			  {% for o in order %} 
+        				  <tr>
+                    <td> {{ o.id }} </td>
+                    <td> {{ o.cus }} </td>
+                    <td> {{ o.Odate }} </td>
+                    <td> {{ o.total_amt }} </td>
+                    {% if o.isDelivered %}
+                      <td> {{ o.Ddate }} </td>
+                    {% else %}
+                      <td>
+                          <a href="{% url 'inventory:delivered' o.id %}" class="btn btn-success btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-check"></i>
+                            </span>
+                            <span class="text"> Deliver Now </span>
+                          </a>
+                      </td>
+                    {% endif %}
+
+                    <td> 
+                          <a href="{% url 'inventory:order_details' o.id %}"> Details 
+                              <i class="fas fa-info-circle"></i> 
+                          </a>
+                     </td>
+
+                 </tr> 
+			        {% endfor %}
+	         </ul>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+

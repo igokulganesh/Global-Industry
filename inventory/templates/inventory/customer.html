@@ -1,0 +1,107 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">Customer Details </h1>
+<p class="mb-4">View Personal details of all the customers and their orders  </p>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Customer Table</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>address</th>
+            <th>phone</th>
+            <th> View Orders</th>
+            <th> Add New Orders </th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          <ul>
+        		{% for c in cus %}
+        			<tr>
+                  <td>{{ c.id }} </td>
+        			    <td>{{ c.name }} </td> 
+        			    <td>{{ c.address }} </td>
+        			    <td>{{ c.phone }} </td>
+
+                  <!-- View Orders Details -->
+                  <td>
+                    <a href="{% url 'inventory:order_list' c.id %}" 
+                      class="btn btn-link" role="button"> view
+                    </a>
+                  </td>
+
+                  <!-- Add New Orders -->
+                  <td>
+                    <a href="{% url 'inventory:order_now' c.id %}" 
+                      class="btn btn-link" role="button"> order here
+                    </a>
+                  </td> 
+                  
+                  <!-- Update -->
+                  
+                  <td>
+                      <a href="{% url 'inventory:cust_edit' c.id %}" class="btn btn-info btn-circle btn-sm">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    
+                  </td>
+                  
+                  <!-- delete -->
+                  <td>
+
+                  <a class="btn btn-danger btn-circle btn-sm" href="{% url 'inventory:delete_customer' c.id %}" 
+                      data-toggle="modal" data-target="#{{ c }}">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                  <div class="modal fade" id="{{ c }}" tabindex="-1" role="dialog" 
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> Are you sure to Delete {{ c }} </h5>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <button class="btn btn-secondary" type="button" data-dismiss="modal"> Cancel </button>
+                          <a class="btn btn-danger"  href="{% url 'inventory:delete_customer' c.id %}"> Delete </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </td>    
+              
+        			</tr>
+        		{% endfor %}
+        	</ul>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+        <!-- /.container-fluid -->
+
+<!-- Add Customer -->  
+
+<div class="button-group" align="right">
+      <a href="{% url 'inventory:add_customer' %}" class="btn btn-primary" role="button">
+      Add New Customer </a>
+</div>
+
+
+
+{% endblock %}

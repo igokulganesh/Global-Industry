@@ -1,0 +1,68 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+{% if header %}
+<div class="card-header py-3">
+  <h4 class="m-0 font-weight-bold text-primary"> {{ header }} </h4>
+</div>
+{% endif %}
+
+   
+<br>
+<div class="container">
+	<form method="POST">
+		{% csrf_token %} 
+
+		<div class="form-group row">
+			<label for="id_{{field.name}}" class="col-2 col-form-label"> {{ form.first_name.label }}</label>
+			<div class="col-10">
+				<div class="col-4 offset-1">
+					{{ form.first_name }}
+				</div>
+			</div>
+    </div>
+
+		<div class="form-group row">
+			<label for="id_{{field.name}}" class="col-2 col-form-label"> {{ form.last_name.label }}</label>
+			<div class="col-10">
+				<div class="col-4 offset-1">
+					{{ form.last_name }}
+				</div>
+			</div>
+    </div>
+
+		<div class="form-group row">
+			<label for="id_{{field.name}}" class="col-2 col-form-label"> {{ form.email.label }}</label>
+			<div class="col-10">
+				<div class="col-4 offset-1">
+					{{ form.email }}
+				</div>
+			</div>
+    </div>
+
+    <div class="button-group row">
+    	<label class="col-2 col-form-label"> Password </label>
+      <a href="{% url 'home:change_password' %}" class="btn btn-link" role="button">
+      Reset Password </a>
+		</div>
+
+    <!--<input type="submit" name="Save">-->
+
+    <br>
+    <br>
+    <button class ="btn btn-primary">Save</button>
+   	<!--<button class="btn btn-link" onclick="javascript:history.back();">Save</button>-->
+    <input action="action" class="btn btn-link" onclick="window.history.go(-1); 
+    	return false;" type="submit" value="Cancel"/>
+	</form>
+</div>
+
+
+
+{% endblock %}
+
+
+<!-- This is common add html for all -->

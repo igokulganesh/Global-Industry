@@ -1,0 +1,78 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800"> {{ header }} </h1>
+
+<a href="{% url 'inventory:view_all_transaction' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text"> All Transactions </span>
+</a>
+
+<a href="{% url 'inventory:view_credit' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text"> Credited Transactions </span>
+</a>
+
+<a href="{% url 'inventory:view_debit' %}" class="btn btn-light btn-icon-split">
+  <span class="icon text-gray-600">
+    <i class="fas fa-arrow-right"></i>
+  </span>
+  <span class="text"> Debited Transactions </span>
+</a>
+
+
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Transaction Table</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead align="center">
+          <tr>
+            <th> ID </th>
+            <th> Description </th>
+            <th> Amount </th>
+            <th> Date </th>
+            <th> Type </th>
+          </tr>
+        </thead>
+        <tbody align="center">
+        	{% for tr in trans %}
+        	<tr>  
+              <td>{{ tr.id }} </td>
+        	    <td>{{ tr.description }} </td> 
+              <td>{{ tr.amt }}</td>
+              <td>{{ tr.date }}</td>
+              {% if tr.type %}
+                <td> Debit </td>
+              {% else %}
+                <td> Credit </td>
+              {% endif %}
+          	</tr>
+          	{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Add Empplyeee -->  
+
+<div class="button-group" align="right" >
+  <a href="{% url 'inventory:add_transaction' %}" class="btn btn-primary" role="button" >
+  Add New Transaction </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800"> Salary info for {{ emp }} </h1>
+          <p class="mb-4">View salary details of {{ emp }}  till now for their work  </p>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Salary Table</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Date</th>
+                      <th>Basic Salary</th>
+                      <th>Bonus</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody align="center" >
+                    
+            <ul>
+						{% for s in sal %}
+						<tr>
+                <td>{{ s.id }} </td>
+						    <td>{{ s.paidDate }} </td> 
+						    <td>{{ s.basicSalary }} </td>
+						    <td>{{ s.bonus }} </td>
+						    <td>{{ s.total  }} </td>
+						</tr>
+						{% endfor %}
+						</ul>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Pay all salary -->  
+      </div>
+
+<!-- /.container-fluid -->
+
+
+</div>
+
+
+
+{% endblock %}

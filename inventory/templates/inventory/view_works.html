@@ -1,0 +1,43 @@
+{% extends 'inventory/base.html' %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">Work Details of {{ emp.name }}</h1>
+<p class="mb-4">View all the details of the work {{ emp.name }} had done so far  </p>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"> {{ emp.name }} Record </h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+      		<ul> 
+      			{% for w in wk %} 
+      				<tr>
+                <td>{{ w.id }} </td>
+                <td>{{ w.product }} </td> 
+                <td>{{ w.weight }} </td>
+    		      </tr> 
+            {% endfor %}
+          </ul>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="button-group" align="right" >
+  <a href="{% url 'inventory:add_work' emp.id %}" class="btn btn-primary" role="button" > Add works </a>
+</div>
+
+{% endblock %}

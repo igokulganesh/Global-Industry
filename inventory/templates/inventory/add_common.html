@@ -1,0 +1,40 @@
+{% extends 'inventory/base.html' %}
+
+{% block body %}
+
+{% if header %}
+<div class="card-header py-3">
+  <h4 class="m-0 font-weight-bold text-primary"> {{ header }} </h4>
+</div>
+{% endif %}
+
+   
+<br>
+<div class="container">
+	<form method="POST">
+		{% csrf_token %} 
+		{% for field in form %}
+
+		<div class="form-group row">
+			<label for="id_{{field.name}}" class="col-2 col-form-label"> {{ field.label }}</label>
+			<div class="col-10">
+				<div class="col-4 offset-1">
+				{{ field }}
+			</div>
+		</div>
+    </div>
+    {% endfor %}
+    <!--<input type="submit" name="Save">-->
+    <button class ="btn btn-primary">Save</button>
+   	<!--<button class="btn btn-link" onclick="javascript:history.back();">Save</button>-->
+    <input action="action" class="btn btn-link" onclick="window.history.go(-1); 
+    	return false;" type="submit" value="Cancel"/>
+	</form>
+</div>
+
+
+
+{% endblock %}
+
+
+<!-- This is common add html for all -->

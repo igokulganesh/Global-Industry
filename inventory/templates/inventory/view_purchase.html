@@ -1,0 +1,61 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">Raw Materials Purchase Details </h1>
+<p class="mb-4">View the details of all raw materials purchased </p>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"> Raw Materials Table</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>From</th>
+            <th>Material</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          
+          <ul>
+        	{% for m in mat %}
+              
+        	<tr>       
+              <td>{{ m.id }} </td>
+              <td>{{ m.sup }} </td> 
+              <td>{{ m.material }} </td> 
+        	    <td>{{ m.total_amt }} </td>
+        	    <td>{{ m.weight }} </td>
+              <td>{{ m.date }} </td>
+        	</tr>
+
+        	{% endfor %}
+        	</ul>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  
+
+
+<!-- Add Customer -->  
+
+<div class="button-group" align="right">
+  <a href="{% url 'inventory:add_material' %}" class="btn btn-primary" role="button">
+  Add New Materials </a>
+  <a href="{% url 'inventory:buy_material' %}" class="btn btn-primary" role="button">
+  Buy Materials </a>
+</div>
+
+
+{% endblock %}

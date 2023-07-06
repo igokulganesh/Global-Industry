@@ -1,0 +1,71 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800"> Give Salary Here </h1>
+          <p class="mb-4">Pay salary to your employees if you wish  </p>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Salary Table</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name of Employee</th>
+                      <th>Basic Salary</th>
+                      <th>Bonus</th>
+                      <th>Total</th>
+                      <th> Pay </th>
+                    </tr>
+                  </thead>
+                  <tbody align="center">
+                    
+            <ul>
+						{% for e in emp %}
+            {% if e.isPaid == 0 %}
+						<tr>
+                <td>{{ e.id }} </td>
+						    <td>{{ e.name }} </td> 
+						    <td>{{ e.basicSalary }} </td>
+						    <td>{{ e.bonus }} </td>
+						    <td>{{ e.total  }} </td>
+
+						    <!-- pay Salary -->
+                <td>
+                    <a href="{% url 'inventory:pay_now' e.id %}" class="btn btn-info  btn-sm">  pay now </a>
+                </td>
+						</tr>
+            {% endif %}
+						{% endfor %}
+						</ul>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Pay all salary -->  
+
+        <div class="button-group" align="right" >
+              <a href="{% url 'inventory:pay_all' %}" class="btn btn-primary" role="button" >
+              Pay All Salary </a>
+        </div>
+
+      </div>
+
+<!-- /.container-fluid -->
+
+
+</div>
+
+
+
+{% endblock %}
