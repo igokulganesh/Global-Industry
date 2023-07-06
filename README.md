@@ -46,16 +46,16 @@ automatically update the database.
 
 # Samples 
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/index.gif)
+![index video](./Sample/index.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/1.gif)
+![index video](./Sample/1.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/2.gif)
+![index video](./Sample/2.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/3.gif)
+![index video](./Sample/3.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/4.gif)
+![index video](./Sample/4.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/5.gif)
+![index video](./Sample/5.gif)
 
-![index video](https://github.com/igokulganesh/Global-Industry/blob/master/Sample/6.gif)
+![index video](./Sample/6.gif)
